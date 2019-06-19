@@ -1,6 +1,7 @@
 package com.pss.imagem.processamento.decorator;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 //Adaptado de https://www.dyclassroom.com/image-processing-project/how-to-convert-a-color-image-into-negative
 public class NegativaDecorator extends ImagemDecorator {
@@ -12,14 +13,14 @@ public class NegativaDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() {
+    public BufferedImage getImagem() throws IOException {
         if (img == null) {
             return converterNegativo();
         }
         return img;
     }
 
-    private BufferedImage converterNegativo() {
+    private BufferedImage converterNegativo() throws IOException {
         imagem = elementoDecorado.getImagem();
 
         int altura = imagem.getHeight();

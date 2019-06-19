@@ -3,6 +3,7 @@ package com.pss.imagem.processamento.decorator;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
+import java.io.IOException;
 
 //Adaptado de https://stackoverflow.com/questions/15777821/how-can-i-pixelate-a-jpg-with-java
 public class PixeladaDecorator extends ImagemDecorator {
@@ -16,14 +17,14 @@ public class PixeladaDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() {
+    public BufferedImage getImagem() throws IOException {
         if (img == null) {
             return pixelar();
         }
         return img;
     }
 
-    private BufferedImage pixelar() {
+    private BufferedImage pixelar() throws IOException {
         this.imagem = elementoDecorado.getImagem();
 
         Raster src = imagem.getData();

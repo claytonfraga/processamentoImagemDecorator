@@ -3,13 +3,14 @@ package com.pss.imagem.processamento.decorator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 
 public class VisualizarDecorator extends ImagemDecorator {
 
     private VisualizarImagemView view;
 
-    public VisualizarDecorator(ImagemComponente imagemComponente) throws InterruptedException {
+    public VisualizarDecorator(ImagemComponente imagemComponente) throws InterruptedException, IOException {
         super(imagemComponente);
         imagem = imagemComponente.getImagem();
         if (imagem == null) {

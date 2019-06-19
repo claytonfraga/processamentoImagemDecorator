@@ -2,6 +2,7 @@ package com.pss.imagem.processamento.decorator;
 
 import java.awt.image.BufferedImage;
 import java.awt.Color;
+import java.io.IOException;
 
 public class BrilhoDecorator extends ImagemDecorator {
 
@@ -14,14 +15,14 @@ public class BrilhoDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() {
+    public BufferedImage getImagem() throws IOException {
         if (img == null) {
             return aplicarBrilho();
         }
         return img;
     }
 
-    private BufferedImage aplicarBrilho() {
+    private BufferedImage aplicarBrilho() throws IOException {
         int altura;
         int largura;
         int i;

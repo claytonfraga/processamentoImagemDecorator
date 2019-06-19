@@ -4,6 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 //Adaptado de https://pt.stackoverflow.com/questions/3777/rota%C3%A7%C3%A3o-de-imagem-em-java?rq=1
 public class RotacionaDecorator extends ImagemDecorator {
@@ -17,11 +18,11 @@ public class RotacionaDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() {
+    public BufferedImage getImagem() throws IOException {
         return inverte();
     }
 
-    private BufferedImage inverte() {
+    private BufferedImage inverte() throws IOException {
 
         BufferedImage novaImagem = elementoDecorado.getImagem();
         int altura = novaImagem.getHeight();

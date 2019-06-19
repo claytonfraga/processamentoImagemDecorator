@@ -1,6 +1,7 @@
 package com.pss.imagem.processamento.decorator;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 //Adaptado de https://www.dyclassroom.com/image-processing-project/how-to-convert-a-color-image-into-sepia-image
 public class SepiaDecorator extends ImagemDecorator {
@@ -12,14 +13,14 @@ public class SepiaDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() {
+    public BufferedImage getImagem() throws IOException {
         if (img == null) {
             return converterSepia();
         }
         return img;
     }
 
-    private BufferedImage converterSepia() {
+    private BufferedImage converterSepia() throws IOException {
         imagem = elementoDecorado.getImagem();
 
         int altura = imagem.getHeight();

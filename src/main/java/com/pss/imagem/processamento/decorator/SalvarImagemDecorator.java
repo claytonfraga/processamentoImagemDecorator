@@ -9,31 +9,28 @@ public class SalvarImagemDecorator extends ImagemDecorator {
 
     private String nome;
 
-    public SalvarImagemDecorator(ImagemComponente elementoDecorado, String nome) throws InterruptedException {
+    public SalvarImagemDecorator(ImagemComponente elementoDecorado, String nome) throws InterruptedException, IOException {
         super(elementoDecorado);
         this.nome = nome;
         salvarImagem();
     }
 
     @Override
-    public BufferedImage getImagem() {
+    public BufferedImage getImagem() throws IOException {
         return salvarImagem();
     }
 
-    private BufferedImage salvarImagem() {
+    private BufferedImage salvarImagem() throws IOException {
 
-        try {
-            imagem = elementoDecorado.getImagem();
+        imagem = elementoDecorado.getImagem();
 
-            String caminho = new File("src/main/resources/").getAbsolutePath();
-            File arquivo = new File(caminho + "\\" + this.nome);
-            ImageIO.write(imagem, "jpg", arquivo);
+        String caminho = new File("src/main/resources/").getAbsolutePath();
+        File arquivo = new File(caminho + "\\" + this.nome);
 
-            return imagem;
-            
-        } catch (IOException ex) {
-            throw new IllegalArgumentException(ex.getMessage());
-        }
+        ImageIO.write(imagem, "jpg", arquivo);
+
+        return imagem;
+
     }
 
     @Override

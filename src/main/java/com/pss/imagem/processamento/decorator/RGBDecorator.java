@@ -1,6 +1,7 @@
 package com.pss.imagem.processamento.decorator;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 //Adaptado de https://www.geeksforgeeks.org/image-processing-java-set-5-colored-red-green-blue-image-conversion/
 public abstract class RGBDecorator extends ImagemDecorator {
@@ -17,14 +18,14 @@ public abstract class RGBDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() {
+    public BufferedImage getImagem() throws IOException {
         if (img == null) {
             return colorir();
         }
         return img;
     }
 
-    protected final BufferedImage colorir() {
+    protected final BufferedImage colorir() throws IOException {
 
         //https://www.geeksforgeeks.org/image-processing-java-set-8-creating-mirror-image/
         imagem = elementoDecorado.getImagem();

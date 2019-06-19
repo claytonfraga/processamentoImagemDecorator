@@ -1,6 +1,7 @@
 package com.pss.imagem.processamento.decorator;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 //Adaptado de //https://www.geeksforgeeks.org/image-processing-java-set-8-creating-mirror-image/
 public class EspelhadaDecorator extends ImagemDecorator {
@@ -12,14 +13,14 @@ public class EspelhadaDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() {
+    public BufferedImage getImagem() throws IOException {
         if (img == null) {
             return espelhar();
         }
         return img;
     }
 
-    private BufferedImage espelhar() {
+    private BufferedImage espelhar() throws IOException {
         int altura;
         int largura;
 
