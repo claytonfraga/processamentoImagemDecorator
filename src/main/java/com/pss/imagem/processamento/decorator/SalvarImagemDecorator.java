@@ -12,6 +12,7 @@ public class SalvarImagemDecorator extends ImagemDecorator {
     public SalvarImagemDecorator(ImagemComponente elementoDecorado, String nome) throws InterruptedException {
         super(elementoDecorado);
         this.nome = nome;
+        salvarImagem();
     }
 
     @Override

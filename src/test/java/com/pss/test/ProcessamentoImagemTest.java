@@ -7,15 +7,22 @@ import com.pss.imagem.processamento.decorator.ImagemComponente;
 import com.pss.imagem.processamento.decorator.PixeladaDecorator;
 import com.pss.imagem.processamento.decorator.SalvarImagemDecorator;
 import com.pss.imagem.processamento.decorator.TomDeCinzaDecorator;
+import java.io.File;
 import java.io.IOException;
+import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 public class ProcessamentoImagemTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     public ProcessamentoImagemTest() {
     }
@@ -72,10 +79,23 @@ public class ProcessamentoImagemTest {
 
     @Test
     public void filtro5() throws IOException, InterruptedException, Exception {
+
+        String caminho = new File("src/main/resources/").getAbsolutePath();
+        String nomeArquivo = "pixelada.jpg";
+        File arquivo = new File(caminho + "\\" + nomeArquivo);
+
+        
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage(CoreMatchers.containsString("A imagem foi salva, nao e possivel reverter"));
+
         ImagemComponente imagem = new Imagem("lenna.jpg");
         imagem = new PixeladaDecorator(imagem, 5);
         imagem.visualizar();
-        imagem = new SalvarImagemDecorator(imagem, "lenna-verde.jpg");
+        
+        arquivo.delete();
+        imagem = new SalvarImagemDecorator(imagem, nomeArquivo);
+
+        assertTrue(arquivo.exists());
         assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
     }
 }
