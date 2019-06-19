@@ -4,8 +4,11 @@ import com.pss.imagem.processamento.decorator.AzulDecorator;
 import com.pss.imagem.processamento.decorator.EspelhadaDecorator;
 import com.pss.imagem.processamento.decorator.Imagem;
 import com.pss.imagem.processamento.decorator.ImagemComponente;
+import com.pss.imagem.processamento.decorator.NegativaDecorator;
 import com.pss.imagem.processamento.decorator.PixeladaDecorator;
+import com.pss.imagem.processamento.decorator.RotacionaDecorator;
 import com.pss.imagem.processamento.decorator.SalvarImagemDecorator;
+import com.pss.imagem.processamento.decorator.SepiaDecorator;
 import com.pss.imagem.processamento.decorator.TomDeCinzaDecorator;
 import java.io.File;
 import java.io.IOException;
@@ -84,18 +87,59 @@ public class ProcessamentoImagemTest {
         String nomeArquivo = "pixelada.jpg";
         File arquivo = new File(caminho + "\\" + nomeArquivo);
 
-        
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage(CoreMatchers.containsString("A imagem foi salva, nao e possivel reverter"));
 
         ImagemComponente imagem = new Imagem("lenna.jpg");
         imagem = new PixeladaDecorator(imagem, 5);
         imagem.visualizar();
-        
+
         arquivo.delete();
         imagem = new SalvarImagemDecorator(imagem, nomeArquivo);
 
         assertTrue(arquivo.exists());
         assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
     }
+
+    @Test
+    public void filtro6() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new NegativaDecorator(imagem);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro7() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new RotacionaDecorator(imagem, 90);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro8() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new SepiaDecorator(imagem);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro9() throws IOException, InterruptedException, Exception {
+
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage(CoreMatchers.containsString("Informe um arquivo JPG"));
+
+        ImagemComponente imagem = new Imagem("lenna");
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro10() throws IOException, InterruptedException, Exception {
+
+        thrown.expect(IOException.class);
+        thrown.expectMessage(CoreMatchers.containsString("Falha: Não foi possivel abrir a imagem \n"));
+
+        ImagemComponente imagem = new Imagem("lennaxxx.jpg");
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
 }
