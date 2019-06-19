@@ -26,11 +26,11 @@ public class SalvarImagemDecorator extends ImagemDecorator {
             imagem = elementoDecorado.getImagem();
 
             String caminho = new File("src/main/resources/").getAbsolutePath();
-
             File arquivo = new File(caminho + "\\" + this.nome);
             ImageIO.write(imagem, "jpg", arquivo);
 
             return imagem;
+            
         } catch (IOException ex) {
             throw new IllegalArgumentException(ex.getMessage());
         }

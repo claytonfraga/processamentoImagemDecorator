@@ -142,4 +142,16 @@ public class ProcessamentoImagemTest {
         assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
     }
 
+    @Test
+    public void filtro11() throws IOException, InterruptedException, Exception {
+
+        thrown.expect(IllegalArgumentException.class);
+        //thrown.expectMessage(CoreMatchers.containsString("A imagem foi salva, nao e possivel reverter"));
+
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new SalvarImagemDecorator(imagem, null);
+
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
 }
