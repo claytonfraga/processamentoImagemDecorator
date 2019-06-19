@@ -1,6 +1,7 @@
 package com.pss.test;
 
 import com.pss.imagem.processamento.decorator.AzulDecorator;
+import com.pss.imagem.processamento.decorator.BrilhoDecorator;
 import com.pss.imagem.processamento.decorator.EspelhadaDecorator;
 import com.pss.imagem.processamento.decorator.Imagem;
 import com.pss.imagem.processamento.decorator.ImagemComponente;
@@ -10,6 +11,8 @@ import com.pss.imagem.processamento.decorator.RotacionaDecorator;
 import com.pss.imagem.processamento.decorator.SalvarImagemDecorator;
 import com.pss.imagem.processamento.decorator.SepiaDecorator;
 import com.pss.imagem.processamento.decorator.TomDeCinzaDecorator;
+import com.pss.imagem.processamento.decorator.VerdeDecorator;
+import com.pss.imagem.processamento.decorator.VermelhoDecorator;
 import java.io.File;
 import java.io.IOException;
 import org.hamcrest.CoreMatchers;
@@ -140,6 +143,70 @@ public class ProcessamentoImagemTest {
 
         ImagemComponente imagem = new Imagem("lennaxxx.jpg");
         assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro11() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new BrilhoDecorator(imagem, 20);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro12() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new VerdeDecorator(imagem);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro13() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new VermelhoDecorator(imagem);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro14() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new RotacionaDecorator(imagem, 0);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro15() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new RotacionaDecorator(imagem, 40);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro16() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new RotacionaDecorator(imagem, 179);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro17() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new RotacionaDecorator(imagem, 269);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro18() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new RotacionaDecorator(imagem, 271);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro19() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem.reverter();
+
+        assertTrue(imagem.getImagem() != null);
     }
 
 }
