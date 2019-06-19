@@ -13,9 +13,7 @@ public class VisualizarDecorator extends ImagemDecorator {
     public VisualizarDecorator(ImagemComponente imagemComponente) throws InterruptedException, IOException {
         super(imagemComponente);
         imagem = imagemComponente.getImagem();
-        if (imagem == null) {
-            throw new IllegalArgumentException("Imagem nula, informe uma imagem válida");
-        }
+
         view = new VisualizarImagemView();
 
         view.getLblImagem().setIcon(new ImageIcon(imagem));
