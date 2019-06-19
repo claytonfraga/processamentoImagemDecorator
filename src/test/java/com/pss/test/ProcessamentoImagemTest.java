@@ -5,6 +5,7 @@ import com.pss.imagem.processamento.decorator.EspelhadaDecorator;
 import com.pss.imagem.processamento.decorator.Imagem;
 import com.pss.imagem.processamento.decorator.ImagemComponente;
 import com.pss.imagem.processamento.decorator.PixeladaDecorator;
+import com.pss.imagem.processamento.decorator.SalvarImagemDecorator;
 import com.pss.imagem.processamento.decorator.TomDeCinzaDecorator;
 import java.io.IOException;
 import org.junit.After;
@@ -66,6 +67,15 @@ public class ProcessamentoImagemTest {
     public void filtro4() throws IOException, InterruptedException, Exception {
         ImagemComponente imagem = new Imagem("lenna.jpg");
         imagem = new TomDeCinzaDecorator(imagem);
+        assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
+    }
+
+    @Test
+    public void filtro5() throws IOException, InterruptedException, Exception {
+        ImagemComponente imagem = new Imagem("lenna.jpg");
+        imagem = new PixeladaDecorator(imagem, 5);
+        imagem.visualizar();
+        imagem = new SalvarImagemDecorator(imagem, "lenna-verde.jpg");
         assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
     }
 }

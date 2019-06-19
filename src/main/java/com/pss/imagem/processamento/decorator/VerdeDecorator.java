@@ -14,5 +14,4 @@ public class VerdeDecorator extends RGBDecorator {
 
         rgb = (a << 24) | (green << 8);
     }
-;
 }

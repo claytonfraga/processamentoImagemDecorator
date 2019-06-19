@@ -2,11 +2,11 @@ package com.pss.imagem.processamento.decorator;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class SalvarImagemDecorator extends ImagemDecorator {
 
-    private BufferedImage img;
     private String nome;
 
     public SalvarImagemDecorator(ImagemComponente elementoDecorado, String nome) throws InterruptedException {
@@ -15,23 +15,24 @@ public class SalvarImagemDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         return salvarImagem();
     }
 
-    private BufferedImage salvarImagem() throws Exception {
+    private BufferedImage salvarImagem() {
 
-        imagem = elementoDecorado.getImagem();
+        try {
+            imagem = elementoDecorado.getImagem();
 
-        String caminho = new File("src/main/resources/").getAbsolutePath();
-        System.out.println(caminho);
+            String caminho = new File("src/main/resources/").getAbsolutePath();
 
-        File arquivo = new File(caminho + "\\" + this.nome);
-        ImageIO.write(imagem, "jpg", arquivo);
+            File arquivo = new File(caminho + "\\" + this.nome);
+            ImageIO.write(imagem, "jpg", arquivo);
 
-        img = imagem;
-
-        return imagem;
+            return imagem;
+        } catch (IOException ex) {
+            throw new IllegalArgumentException(ex.getMessage());
+        }
     }
 
     @Override

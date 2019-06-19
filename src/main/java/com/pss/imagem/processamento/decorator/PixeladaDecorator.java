@@ -16,15 +16,14 @@ public class PixeladaDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         if (img == null) {
             return pixelar();
         }
         return img;
     }
 
-    private BufferedImage pixelar() throws Exception {
-        int i, j;
+    private BufferedImage pixelar() {
         this.imagem = elementoDecorado.getImagem();
 
         Raster src = imagem.getData();

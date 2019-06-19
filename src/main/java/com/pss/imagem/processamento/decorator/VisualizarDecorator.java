@@ -9,19 +9,15 @@ public class VisualizarDecorator extends ImagemDecorator {
 
     private VisualizarImagemView view;
 
-    public VisualizarDecorator(ImagemComponente imagemComponente) throws InterruptedException, Exception {
+    public VisualizarDecorator(ImagemComponente imagemComponente) throws InterruptedException {
         super(imagemComponente);
         imagem = imagemComponente.getImagem();
         if (imagem == null) {
             throw new IllegalArgumentException("Imagem nula, informe uma imagem válida");
         }
         view = new VisualizarImagemView();
-        //    int altura = imagem.getHeight() + 300;
-        //  int largura = imagem.getWidth() + 300;
-        //view.setPreferredSize(new Dimension(largura, altura));
 
         view.getLblImagem().setIcon(new ImageIcon(imagem));
-        //view.pack();
         view.getBtnFechar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,7 +30,7 @@ public class VisualizarDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         return imagem;
     }
 

@@ -17,5 +17,4 @@ public class AzulDecorator extends RGBDecorator {
         // image and setting r and g as 0. 
         rgb = (a << 24) | blue;
     }
-;
 }

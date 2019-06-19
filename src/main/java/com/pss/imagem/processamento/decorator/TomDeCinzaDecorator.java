@@ -19,15 +19,15 @@ public class TomDeCinzaDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         if (img == null) {
             return converterEscalaDeCinza();
         }
         return img;
     }
 
-    private BufferedImage converterEscalaDeCinza() throws Exception {
-        int i, j;
+    private BufferedImage converterEscalaDeCinza() {
+
         imagem = elementoDecorado.getImagem();
 
         ImageFilter filter = new GrayFilter(true, 50);

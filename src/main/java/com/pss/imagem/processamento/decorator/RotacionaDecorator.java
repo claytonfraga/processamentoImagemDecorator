@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 //Adaptado de https://pt.stackoverflow.com/questions/3777/rota%C3%A7%C3%A3o-de-imagem-em-java?rq=1
 public class RotacionaDecorator extends ImagemDecorator {
 
-    private int altura, largura, angulo;
+    private int angulo;
 
     public RotacionaDecorator(ImagemComponente elementoDecorado, int angulo) throws InterruptedException {
         super(elementoDecorado);
@@ -17,15 +17,15 @@ public class RotacionaDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         return inverte();
     }
 
-    private BufferedImage inverte() throws Exception {
-        int i, j;
+    private BufferedImage inverte() {
+
         BufferedImage novaImagem = elementoDecorado.getImagem();
-        altura = novaImagem.getHeight();
-        largura = novaImagem.getWidth();
+        int altura = novaImagem.getHeight();
+        int largura = novaImagem.getWidth();
 
         angulo %= 360;
         if (angulo < 0) {

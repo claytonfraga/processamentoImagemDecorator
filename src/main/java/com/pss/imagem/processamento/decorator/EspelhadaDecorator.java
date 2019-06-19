@@ -6,23 +6,23 @@ import java.awt.image.BufferedImage;
 public class EspelhadaDecorator extends ImagemDecorator {
 
     private BufferedImage img;
-    private int altura, largura;
 
     public EspelhadaDecorator(ImagemComponente elementoDecorado) throws InterruptedException {
         super(elementoDecorado);
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         if (img == null) {
             return espelhar();
         }
         return img;
     }
 
-    private BufferedImage espelhar() throws Exception {
+    private BufferedImage espelhar() {
+        int altura;
+        int largura;
 
-        
         imagem = elementoDecorado.getImagem();
 
         altura = imagem.getHeight();

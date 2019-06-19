@@ -6,7 +6,6 @@ import java.awt.Color;
 public class BrilhoDecorator extends ImagemDecorator {
 
     private BufferedImage img;
-    private int altura, largura;
     private final int escala;
 
     public BrilhoDecorator(ImagemComponente elementoDecorado, int escala) throws InterruptedException {
@@ -15,15 +14,18 @@ public class BrilhoDecorator extends ImagemDecorator {
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         if (img == null) {
             return aplicarBrilho();
         }
         return img;
     }
 
-    private BufferedImage aplicarBrilho() throws Exception {
-        int i, j;
+    private BufferedImage aplicarBrilho() {
+        int altura;
+        int largura;
+        int i;
+        int j;
         this.imagem = elementoDecorado.getImagem();
 
         altura = imagem.getHeight();
@@ -48,7 +50,6 @@ public class BrilhoDecorator extends ImagemDecorator {
                 nb = Math.min(nb, 255);
 
                 Color nc = new Color(nr, ng, nb);
-                // this.imagem.setRGB(j, i, nc.getRGB());
                 novaImagem.setRGB(j, i, nc.getRGB());
             }
         }

@@ -6,28 +6,31 @@ import java.awt.image.BufferedImage;
 public abstract class RGBDecorator extends ImagemDecorator {
 
     private BufferedImage img;
-    private int altura, largura;
-    protected int rgb, a, red, green, blue;
+    protected int rgb;
+    protected int a;
+    protected int red;
+    protected int green;
+    protected int blue;
 
     public RGBDecorator(ImagemComponente elementoDecorado) throws InterruptedException {
         super(elementoDecorado);
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         if (img == null) {
             return colorir();
         }
         return img;
     }
 
-    protected final BufferedImage colorir() throws Exception {
+    protected final BufferedImage colorir() {
 
         //https://www.geeksforgeeks.org/image-processing-java-set-8-creating-mirror-image/
         imagem = elementoDecorado.getImagem();
 
-        altura = imagem.getHeight();
-        largura = imagem.getWidth();
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
 
         BufferedImage novaImagem = new BufferedImage(largura, altura,
                 BufferedImage.TYPE_INT_ARGB);

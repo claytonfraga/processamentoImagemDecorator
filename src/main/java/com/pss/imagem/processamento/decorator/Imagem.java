@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Imagem extends ImagemComponente {
 
-    public Imagem(String caminhoArquivo) throws IOException, InterruptedException, IllegalArgumentException {
+    public Imagem(String caminhoArquivo) throws IOException, InterruptedException {
         try {
             if (!caminhoArquivo.toLowerCase().endsWith(".jpg")) {
                 throw new IllegalArgumentException("Informe um arquivo JPG");
@@ -15,7 +15,7 @@ public class Imagem extends ImagemComponente {
             imagem = ImageIO.read(new File(caminhoArquivo));
             Thread.sleep(1000);
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             throw new IOException("Falha: Não foi possivel abrir a imagem \n" + e.getMessage());
         }
     }

@@ -6,25 +6,24 @@ import java.awt.image.BufferedImage;
 public class SepiaDecorator extends ImagemDecorator {
 
     private BufferedImage img;
-    private int altura, largura;
 
     public SepiaDecorator(ImagemComponente elementoDecorado) throws InterruptedException {
         super(elementoDecorado);
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         if (img == null) {
             return converterSepia();
         }
         return img;
     }
 
-    private BufferedImage converterSepia() throws Exception {
+    private BufferedImage converterSepia() {
         imagem = elementoDecorado.getImagem();
 
-        altura = imagem.getHeight();
-        largura = imagem.getWidth();
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
 
         BufferedImage novaImagem = new BufferedImage(largura, altura,
                 BufferedImage.TYPE_INT_ARGB);

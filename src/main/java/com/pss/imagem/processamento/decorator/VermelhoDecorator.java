@@ -15,5 +15,4 @@ public class VermelhoDecorator extends RGBDecorator {
 
         this.rgb = (a << 24) | (red << 16);
     }
-;
 }

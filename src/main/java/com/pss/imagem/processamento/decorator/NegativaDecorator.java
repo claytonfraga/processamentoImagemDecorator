@@ -6,25 +6,24 @@ import java.awt.image.BufferedImage;
 public class NegativaDecorator extends ImagemDecorator {
 
     private BufferedImage img;
-    private int altura, largura;
 
     public NegativaDecorator(ImagemComponente elementoDecorado) throws InterruptedException {
         super(elementoDecorado);
     }
 
     @Override
-    public BufferedImage getImagem() throws Exception {
+    public BufferedImage getImagem() {
         if (img == null) {
             return converterNegativo();
         }
         return img;
     }
 
-    private BufferedImage converterNegativo() throws Exception {
+    private BufferedImage converterNegativo() {
         imagem = elementoDecorado.getImagem();
 
-        altura = imagem.getHeight();
-        largura = imagem.getWidth();
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
 
         BufferedImage novaImagem = new BufferedImage(largura, altura,
                 BufferedImage.TYPE_INT_ARGB);

@@ -13,6 +13,4 @@ public abstract class ImagemDecorator extends ImagemComponente {
     public ImagemComponente reverter() {
         return elementoDecorado;
     }
-;
-
 }
