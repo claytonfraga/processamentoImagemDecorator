@@ -83,6 +83,7 @@ public class ProcessamentoImagemTest {
         assertTrue(imagem.getImagem() != imagem.reverter().getImagem());
     }
 
+    @Ignore
     @Test
     public void filtro5() throws IOException, InterruptedException, Exception {
 
